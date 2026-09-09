@@ -5,174 +5,153 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Хогвартс · Русский язык</title>
+<title>Олимпиадка · Русский язык</title>
 <style>
-/* ── ТОКЕНЫ ─────────────────────────────────────────── */
+/* ── ЦВЕТОВАЯ СИСТЕМА ─────────────────────────────────────── */
 :root {
-  --bg:       oklch(11% 0.015 265);
-  --surface:  oklch(16% 0.018 265);
-  --raised:   oklch(20% 0.02  265);
-  --border:   oklch(28% 0.025 265);
-  --text:     oklch(92% 0.008 265);
-  --muted:    oklch(55% 0.015 265);
+  --bg:       oklch(98% 0.005 170);
+  --surface:  oklch(100% 0 0);
+  --raised:   oklch(97% 0.008 170);
+  --border:   oklch(90% 0.02  170);
+  --text:     oklch(20% 0.02  170);
+  --muted:    oklch(60% 0.015 170);
 
-  --gold:     oklch(75% 0.16  72);
-  --gold-dim: oklch(60% 0.14  72);
-  --gold-bg:  oklch(22% 0.06  72);
+  --mint:     oklch(72% 0.15  170);
+  --mint-dim: oklch(55% 0.12  170);
+  --mint-bg:  oklch(95% 0.05  170);
 
-  --purple:   oklch(62% 0.16 295);
-  --purple-bg:oklch(18% 0.05 295);
+  --green:    oklch(65% 0.18  140);
+  --green-bg: oklch(93% 0.08  140);
 
-  --ok:       oklch(62% 0.16 148);
-  --ok-bg:    oklch(18% 0.06 148);
-  --err:      oklch(60% 0.19  20);
-  --err-bg:   oklch(18% 0.07  20);
+  --blue:     oklch(60% 0.16  240);
+  --blue-bg:  oklch(92% 0.06  240);
 
-  --r0: oklch(62% 0.18 295); /* Прорицания */
-  --r1: oklch(60% 0.2   25); /* Зельеварение */
-  --r2: oklch(60% 0.19 148); /* Трансфигурация */
-  --r3: oklch(72% 0.16  72); /* Защита */
-  --r4: oklch(58% 0.17 210); /* Заклинания */
+  --ok:       oklch(62% 0.16  148);
+  --ok-bg:    oklch(93% 0.07  148);
+  --err:      oklch(60% 0.19   25);
+  --err-bg:   oklch(96% 0.06   25);
 }
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body {
   font-family:-apple-system,"SF Pro Rounded","Segoe UI",sans-serif;
-  background:var(--bg);
+  background:linear-gradient(135deg, var(--bg) 0%, oklch(97% 0.01 220) 100%);
   min-height:100vh;
   display:flex;justify-content:center;
   padding:14px 12px 48px;
-  background-image:
-    radial-gradient(ellipse 60% 40% at 50% -10%, oklch(28% 0.08 280 / .35), transparent),
-    radial-gradient(ellipse 40% 30% at 80% 110%, oklch(25% 0.07 50 / .2), transparent);
 }
-.app{width:100%;max-width:440px}
+.app { width:100%; max-width:460px; }
 
-/* ── HEADER ─────────────────────────────────────────── */
-.header{
+/* ── ХЕДЕР ────────────────────────────────────────────────── */
+.header {
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:13px 16px;
+  border-radius:22px;
+  padding:14px 18px;
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:12px;
-  box-shadow:0 0 24px oklch(75% 0.16 72 / .08);
+  box-shadow:0 2px 12px oklch(0% 0 0 / .06);
 }
-.header h1{font-size:16px;font-weight:800;color:var(--gold);letter-spacing:.03em}
-.header h1 span{color:var(--text);font-weight:500}
-.stats{display:flex;gap:8px}
-.stat{
-  background:var(--gold-bg);
-  border:1px solid oklch(75% 0.16 72 / .3);
-  border-radius:10px;
-  padding:5px 10px;
+.header h1 { font-size:18px; font-weight:800; color:var(--text); }
+.stats { display:flex; gap:9px; }
+.stat {
+  background:var(--mint-bg);
+  border:1px solid oklch(72% 0.15 170 / .3);
+  border-radius:11px;
+  padding:6px 12px;
   font-size:13px;font-weight:700;
-  color:var(--gold);
+  color:var(--mint-dim);
 }
-.stat.streak{background:oklch(20% 0.06 25);border-color:oklch(60% 0.19 20 / .35);color:oklch(72% 0.18 35)}
 
-/* ── ФАКУЛЬТЕТ-ВКЛАДКИ ─────────────────────────────── */
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.tab{
+/* ── ВКЛАДКИ ──────────────────────────────────────────────── */
+.tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+.tab {
   border:1px solid var(--border);
   border-radius:20px;
-  padding:6px 12px;
+  padding:7px 13px;
   font-size:12px;font-weight:700;
   cursor:pointer;
   background:var(--surface);
   color:var(--muted);
-  transition:transform .12s,background .15s,color .15s,border-color .15s;
-  white-space:nowrap;
+  transition:transform .12s,all .15s;
 }
-.tab:active{transform:scale(.93)}
-.tab[data-s="0"].active{background:oklch(20% 0.07 295);color:var(--r0);border-color:oklch(62% 0.18 295 / .5)}
-.tab[data-s="1"].active{background:oklch(20% 0.07  25);color:var(--r1);border-color:oklch(60% 0.2   25 / .5)}
-.tab[data-s="2"].active{background:oklch(18% 0.07 148);color:var(--r2);border-color:oklch(60% 0.19 148 / .5)}
-.tab[data-s="3"].active{background:var(--gold-bg);    color:var(--r3);border-color:oklch(72% 0.16  72 / .5)}
-.tab[data-s="4"].active{background:oklch(18% 0.06 210);color:var(--r4);border-color:oklch(58% 0.17 210 / .5)}
+.tab:active { transform:scale(.93); }
+.tab.active {
+  background:var(--mint-bg);
+  color:var(--mint-dim);
+  border-color:var(--mint);
+}
 
-/* ── ДНИ ─────────────────────────────────────────────── */
-.days{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:12px}
-.day-btn{
+/* ── ДНИ ──────────────────────────────────────────────────── */
+.days { display:grid; grid-template-columns:repeat(5,1fr); gap:7px; margin-bottom:12px; }
+.day-btn {
   border:1px solid var(--border);
   border-radius:14px;
-  padding:10px 2px;
+  padding:11px 2px;
   font-size:12.5px;font-weight:700;
   background:var(--surface);
-  color:var(--muted);
-  cursor:pointer;
-  transition:transform .12s;
+  color:var(--text);cursor:pointer;
+  transition:transform .12s,all .15s;
 }
-.day-btn:active{transform:scale(.9)}
-.day-btn.done{background:var(--ok-bg);border-color:oklch(62% 0.16 148 / .4);color:var(--ok)}
-.day-btn.active{border-color:var(--gold);color:var(--gold);background:var(--gold-bg)}
+.day-btn:active { transform:scale(.9); }
+.day-btn.done { background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
+.day-btn.active { border-color:var(--mint); background:var(--mint-bg); color:var(--mint-dim); }
 
-/* ── ПРОГРЕСС ────────────────────────────────────────── */
-.prog-wrap{height:3px;background:var(--raised);border-radius:99px;margin-bottom:14px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--gold));border-radius:99px;transition:width .4s ease}
+/* ── ПРОГРЕСС ─────────────────────────────────────────────── */
+.prog-wrap { height:3px; background:var(--border); border-radius:99px; margin-bottom:14px; overflow:hidden; }
+.prog-fill {
+  height:100%;
+  background:linear-gradient(90deg, var(--mint) 0%, var(--green) 50%, var(--blue) 100%);
+  border-radius:99px;
+  transition:width .4s ease;
+}
 
-/* ── КАРТОЧКА ────────────────────────────────────────── */
-.card{
+/* ── КАРТОЧКА ─────────────────────────────────────────────── */
+.card {
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:22px;
   padding:20px 18px;
-  box-shadow:0 0 40px oklch(0% 0 0 / .4);
+  box-shadow:0 4px 16px oklch(0% 0 0 / .05);
   animation:appear .28s ease;
 }
-@keyframes appear{from{transform:translateY(6px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+@keyframes appear { from{transform:translateY(6px) scale(.98);opacity:0}to{transform:none;opacity:1} }
 
-.mascot{font-size:34px;text-align:center;margin-bottom:4px;filter:drop-shadow(0 0 8px oklch(75% 0.16 72 / .5))}
-.q-meta{text-align:center;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;letter-spacing:.04em;text-transform:uppercase}
+.mascot { font-size:36px; text-align:center; margin-bottom:5px; }
+.q-meta { text-align:center; font-size:11px; font-weight:700; color:var(--muted); margin-bottom:10px; letter-spacing:.04em; text-transform:uppercase; }
 
-/* ── ЭТАПЫ УРОКА ─────────────────────────────────────── */
-.stage-badge{
+/* ── ЭТАП УРОКА ───────────────────────────────────────────── */
+.stage-badge {
   display:inline-flex;align-items:center;gap:5px;
-  border-radius:8px;padding:3px 10px;
+  border-radius:9px;padding:4px 11px;
   font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
-  margin-bottom:10px;
+  margin-bottom:12px;
+  background:var(--mint-bg);color:var(--mint-dim);border:1px solid oklch(72% 0.15 170 / .3);
 }
-.stage-rule {background:oklch(20% 0.07 295);color:var(--r0);border:1px solid oklch(62% 0.18 295 / .4)}
-.stage-practice{background:var(--gold-bg);color:var(--gold);border:1px solid oklch(75% 0.16 72 / .4)}
-.stage-exception{background:oklch(20% 0.07 25);color:var(--r1);border:1px solid oklch(60% 0.2 25 / .4)}
-.stage-olymp{background:oklch(18% 0.07 148);color:var(--r2);border:1px solid oklch(60% 0.19 148 / .4)}
 
-/* ── СВИТОК (ПРАВИЛО) ────────────────────────────────── */
-.scroll-box{
-  background:oklch(13% 0.03 72);
-  border:1px solid oklch(75% 0.16 72 / .25);
+/* ── СВИТОК (ПРАВИЛО) ─────────────────────────────────────── */
+.scroll-box {
+  background:var(--mint-bg);
+  border:1px solid oklch(72% 0.15 170 / .2);
   border-radius:14px;
   padding:14px 16px;
   margin-bottom:14px;
   position:relative;
 }
-.scroll-box::before{
-  content:'📜';
-  position:absolute;top:-10px;left:14px;
-  font-size:18px;
-  filter:drop-shadow(0 0 6px oklch(75% 0.16 72 / .5));
-}
-.scroll-title{
-  font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--gold-dim);margin-bottom:8px;padding-top:2px;
-}
-.scroll-body{
-  font-size:13.5px;line-height:1.65;color:oklch(85% 0.02 72);
+.scroll-box::before { content:'📜'; position:absolute; top:-10px; left:14px; font-size:18px; }
+.scroll-title { font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--mint-dim); margin-bottom:9px; padding-top:2px; }
+.scroll-body {
+  font-size:13.5px; line-height:1.65; color:var(--text);
   white-space:pre-line;
 }
-.scroll-body strong{color:var(--gold);font-weight:700}
-.scroll-body em{color:var(--r1);font-style:normal;font-weight:600}
-.scroll-body code{
-  font-family:ui-monospace,monospace;font-size:12.5px;
-  background:oklch(20% 0.04 72);
-  border:1px solid oklch(75% 0.16 72 / .2);
-  border-radius:5px;padding:1px 5px;color:var(--gold);
-}
+.scroll-body strong { color:var(--mint-dim); font-weight:700; }
+.scroll-body em { color:var(--green); font-style:normal; font-weight:600; }
 
-/* ── КОНТЕКСТ (ОТРЫВОК) ─────────────────────────────── */
-.ctx{
+/* ── КОНТЕКСТ ─────────────────────────────────────────────── */
+.ctx {
   background:var(--raised);
   border:1px solid var(--border);
-  border-left:3px solid var(--purple);
+  border-left:3px solid var(--blue);
   border-radius:12px;
   padding:11px 14px;
   font-size:13px;color:var(--text);
@@ -181,15 +160,15 @@ body{
   max-height:160px;overflow-y:auto;
 }
 
-/* ── ВОПРОС ─────────────────────────────────────────── */
-.question{
+/* ── ВОПРОС ───────────────────────────────────────────────── */
+.question {
   font-size:15.5px;font-weight:700;color:var(--text);
   margin-bottom:14px;line-height:1.5;
 }
 
-/* ── ВАРИАНТЫ ────────────────────────────────────────── */
-.options{display:grid;gap:8px}
-.opt{
+/* ── ВАРИАНТЫ ─────────────────────────────────────────────── */
+.options { display:grid; gap:8px; }
+.opt {
   border:1px solid var(--border);
   background:var(--raised);
   border-radius:13px;
@@ -199,14 +178,14 @@ body{
   transition:transform .1s,border-color .15s,background .15s;
   line-height:1.4;
 }
-.opt:hover{border-color:var(--purple);background:oklch(22% 0.04 295)}
-.opt:active{transform:scale(.98)}
-.opt.sel{border-color:var(--purple);background:var(--purple-bg)}
-.opt.correct{background:var(--ok-bg);border-color:var(--ok);color:oklch(78% 0.14 148)}
-.opt.wrong  {background:var(--err-bg);border-color:var(--err);color:oklch(78% 0.16 20)}
+.opt:hover { border-color:var(--mint); background:var(--mint-bg); }
+.opt:active { transform:scale(.98); }
+.opt.sel { border-color:var(--mint); background:var(--mint-bg); }
+.opt.correct { background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
+.opt.wrong { background:var(--err-bg); border-color:var(--err); color:var(--err); }
 
-/* ── ВВОД ────────────────────────────────────────────── */
-.txt-input{
+/* ── ВВОД ──────────────────────────────────────────────────── */
+.txt-input {
   width:100%;
   background:var(--raised);
   border:1px solid var(--border);
@@ -216,75 +195,79 @@ body{
   color:var(--text);outline:none;
   transition:border-color .15s;
 }
-.txt-input:focus{border-color:var(--purple)}
-.txt-input::placeholder{color:var(--muted);font-weight:400}
+.txt-input:focus { border-color:var(--mint); }
+.txt-input::placeholder { color:var(--muted); font-weight:400; }
 
-/* ── ФИДБЕК ──────────────────────────────────────────── */
-.feedback{text-align:center;font-size:15px;font-weight:800;margin-top:11px;min-height:20px}
-.hint-ans{text-align:center;font-size:12.5px;color:var(--muted);margin-top:4px}
+/* ── ФИДБЕК ───────────────────────────────────────────────── */
+.feedback { text-align:center; font-size:15px; font-weight:800; margin-top:11px; min-height:20px; }
+.hint-ans { text-align:center; font-size:12.5px; color:var(--muted); margin-top:4px; }
 
-/* ── ФАН-ФАКТ ────────────────────────────────────────── */
-.fun-fact{
-  background:oklch(15% 0.05 72);
-  border:1px solid oklch(75% 0.16 72 / .2);
-  border-left:3px solid var(--gold);
+/* ── МОТИВИРУЮЩАЯ ФРАЗА ───────────────────────────────────── */
+.motivation {
+  background:var(--blue-bg);
+  border:1px solid var(--blue);
+  border-left:3px solid var(--blue);
   border-radius:10px;
   padding:10px 12px;
-  font-size:12.5px;color:oklch(78% 0.05 72);
+  font-size:13px;color:var(--text);
+  margin-top:10px;line-height:1.55;
+  font-style:italic;
+}
+.motivation::before { content:'🎵 '; }
+
+/* ── ФАН-ФАКТ ─────────────────────────────────────────────── */
+.fun-fact {
+  background:var(--green-bg);
+  border:1px solid var(--green);
+  border-left:3px solid var(--green);
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:12.5px;color:var(--text);
   margin-top:10px;line-height:1.55;
 }
-.fun-fact::before{content:'⚡ ';color:var(--gold);font-weight:700}
+.fun-fact::before { content:'💡 '; font-weight:700; }
 
-/* ── КНОПКИ ──────────────────────────────────────────── */
-.check-btn,.next-btn,.rule-btn{
+/* ── КНОПКИ ───────────────────────────────────────────────── */
+.check-btn,.next-btn,.rule-btn {
   display:block;width:100%;
   margin-top:12px;
   border:none;border-radius:13px;
   padding:13px;
   font-size:15px;font-weight:800;
-  color:oklch(12% 0.02 72);
+  color:#fff;
   cursor:pointer;
-  background:linear-gradient(135deg, var(--gold) 0%, oklch(68% 0.14 55) 100%);
-  box-shadow:0 4px 16px oklch(75% 0.16 72 / .2);
+  background:linear-gradient(135deg, var(--mint) 0%, var(--green) 100%);
+  box-shadow:0 2px 8px oklch(0% 0 0 / .1);
   transition:transform .1s,box-shadow .15s;
 }
-.check-btn:active,.next-btn:active,.rule-btn:active{transform:scale(.98);box-shadow:none}
-.rule-btn{background:linear-gradient(135deg,var(--purple),oklch(52% 0.14 285));color:#fff}
+.check-btn:active,.next-btn:active,.rule-btn:active { transform:scale(.98); box-shadow:none; }
+.rule-btn { background:linear-gradient(135deg, var(--blue) 0%, oklch(60% 0.14 230) 100%); }
 
-/* ── РЕЗУЛЬТАТ ───────────────────────────────────────── */
-.big{font-size:52px;text-align:center;margin:8px 0;filter:drop-shadow(0 0 12px oklch(75% 0.16 72 / .6))}
-.result-text{text-align:center;font-size:17px;font-weight:800;color:var(--text)}
-.result-sub{text-align:center;font-size:13px;color:var(--muted);margin-top:6px}
-.stars-row{text-align:center;font-size:24px;margin:10px 0}
+/* ── РЕЗУЛЬТАТ ────────────────────────────────────────────── */
+.big { font-size:52px; text-align:center; margin:8px 0; }
+.result-text { text-align:center; font-size:17px; font-weight:800; color:var(--text); }
+.result-sub { text-align:center; font-size:13px; color:var(--muted); margin-top:6px; }
+.stars-row { text-align:center; font-size:24px; margin:10px 0; }
 
-/* ── ВСПЫШКА ПРАВИЛЬНОГО ОТВЕТА ─────────────────────── */
-@keyframes flashGold{
-  0%{box-shadow:0 0 0 0 oklch(75% 0.16 72 / .8)}
-  70%{box-shadow:0 0 0 18px oklch(75% 0.16 72 / 0)}
-  100%{box-shadow:none}
-}
-.flash-ok{animation:flashGold .5s ease-out}
-@keyframes flashErr{
-  0%{box-shadow:0 0 0 0 oklch(60% 0.19 20 / .7)}
-  70%{box-shadow:0 0 0 14px oklch(60% 0.19 20 / 0)}
-  100%{box-shadow:none}
-}
-.flash-err{animation:flashErr .4s ease-out}
+/* ── ВСПЫШКИ ──────────────────────────────────────────────── */
+@keyframes flashOk { 0%{box-shadow:0 0 0 0 oklch(62% 0.16 148 / .6)}70%{box-shadow:0 0 0 16px oklch(62% 0.16 148 / 0)}100%{box-shadow:none} }
+.flash-ok { animation:flashOk .5s ease-out; }
+@keyframes flashErr { 0%{box-shadow:0 0 0 0 oklch(60% 0.19 20 / .5)}70%{box-shadow:0 0 0 12px oklch(60% 0.19 20 / 0)}100%{box-shadow:none} }
+.flash-err { animation:flashErr .4s ease-out; }
 
-/* ── СКРОЛЛ ──────────────────────────────────────────── */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px}
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:99px; }
 </style>
 </head>
 <body>
 <div class="app">
 
   <div class="header">
-    <h1>⚡ Хогвартс <span>· Русский</span></h1>
+    <h1>Олимпиадка</h1>
     <div class="stats">
-      <div class="stat">⚡ <span id="stars">0</span></div>
-      <div class="stat streak">🔥 <span id="streak">0</span></div>
+      <div class="stat">⭐ <span id="stars">0</span></div>
+      <div class="stat">🔥 <span id="streak">0</span></div>
     </div>
   </div>
 
@@ -295,406 +278,130 @@ body{
 
 </div>
 <script>
-/* ═══════════════════════════════════════════════════════
-   ДАННЫЕ: РАЗДЕЛЫ
-═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   МОТИВИРУЮЩИЕ ФРАЗЫ
+═══════════════════════════════════════════════════════════ */
+const QUOTES = [
+  "Lose Yourself — You only get one shot",
+  "Without Me — I'm back",
+  "Mockingbird — Sing their song",
+  "Город поёт — Феникс",
+  "Один в поле воин — Bearwolf",
+  "Gossip — Måneskin",
+  "Begging — Måneskin",
+  "Мы поём — Hatters",
+];
+const getQuote = () => QUOTES[Math.floor(Math.random() * QUOTES.length)];
+
+/* ═════════════════════════════════════════════════════════════
+   РАЗДЕЛЫ
+═════════════════════════════════════════════════════════════ */
 const SEC = [
-  {name:"🔮 Прорицания",    color:"var(--r0)", emoji:"🔮"},  // Этимология
-  {name:"⚗️ Зельеварение",  color:"var(--r1)", emoji:"⚗️"},  // Орфография
-  {name:"✨ Трансфигурация",color:"var(--r2)", emoji:"✨"},   // Морфология
-  {name:"🛡️ Защита",        color:"var(--r3)", emoji:"🛡️"},  // Лексика
-  {name:"⚡ Заклинания",    color:"var(--r4)", emoji:"🎵"},  // Фонетика
+  { name:"Этимология", emoji:"🔮" },
+  { name:"Орфография", emoji:"✍️" },
+  { name:"Морфология", emoji:"🧩" },
+  { name:"Лексика", emoji:"📖" },
+  { name:"Фонетика", emoji:"🎵" },
 ];
 
-/* ═══════════════════════════════════════════════════════
-   ДАННЫЕ: ДНИ
-   Каждый день = один урок.
-   Структура урока: rule → practice (базовые) → exception → olymp
-   Этапы: "rule" | "practice" | "exception" | "olymp"
-═══════════════════════════════════════════════════════ */
+/* ═════════════════════════════════════════════════════════════
+   ДОМА (упрощённый вариант - первый набор уроков)
+═════════════════════════════════════════════════════════════ */
 const DAYS = [
+{sec:0, title:"Этимология · Ложные родственники",
+questions:[
+  {stage:"rule", q:"📜 ПРАВИЛО\n\nПохожие слова — не всегда родственники!\n«Ложные родственники» похожи по звуку, но их корни разные.\n\nПримеры:\n• бедро и беда — похожи, но от разных корней!\n• зной и знак — начинаются на «зн-», но не родственники", type:"rule"},
+  
+  {stage:"practice", q:"Какое слово НЕ является однокоренным с остальными в ряду?\nбеда — бедность — победа — бедро",
+   type:"mc", o:["беда","бедность","победа","бедро"], a:3,
+   fact:"«Бедро» — от *bedro (ляжка). Совсем другое значение! Это классическая ловушка олимпиады."},
 
-/* ━━━━━━ РАЗДЕЛ 0: ПРОРИЦАНИЯ (Этимология) ━━━━━━━━━━━ */
-{
-  sec:0, title:"Урок 1 · Ложные родственники",
-  questions:[
-    // ── ПРАВИЛО ──────────────────────────────────────
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nПохожие слова — не всегда родственники!\n«Ложные родственники» похожи по звуку, но их корни разные. Чтобы проверить родство, нужно понять исходное значение.\n\nПример: <strong>бедро</strong> и <strong>беда</strong> — похоже, но корни разные! «Бедро» от праслав. *bedro (часть тела), «беда» от *beda (нужда).\n\nПравило: если смысл корней совсем разный — слова НЕ родственники, даже если звучат похоже.", type:"rule"},
+  {stage:"practice", q:"В ряду «питьё — пир — пиявка — пища» найдите слово, НЕ однокоренное с остальными.",
+   type:"mc", o:["питьё","пир","пиявка","пища"], a:3,
+   fact:"«Пища» — от *pitati (кормить). Питьё, пир, пиявка — все от *piti (пить)."},
 
-    // ── ПРАКТИКА: базовые ────────────────────────────
-    {stage:"practice",
-     q:"Какое слово НЕ является однокоренным с остальными в ряду?\nбеда — бедность — победа — бедро",
-     type:"mc", o:["беда","бедность","победа","бедро"], a:3,
-     fact:"«Бедро» — от *bedro (ляжка). Совсем другое значение! «Беда», «бедность», «победа» — от *beda (нужда, горе). Это классическая ловушка олимпиады."},
+  {stage:"exception", q:"В ряду «знамя — зной — знак — знание» найдите лишнее слово.",
+   type:"mc", o:["знамя","зной","знак","знание"], a:1,
+   fact:"«Зной» — от *znojь (жара). А знамя, знак, знание — от *znati (знать). Зной — ложный друг!"},
 
-    {stage:"practice",
-     q:"В ряду «питьё — пир — пиявка — пища» найдите слово, НЕ однокоренное с остальными.",
-     type:"mc", o:["питьё","пир","пиявка","пища"], a:3,
-     fact:"«Пища» — от *pitati (кормить), корень иной. Питьё, пир (пиршество), пиявка — все от *piti (пить). Пиявка буквально «то, что пьёт»."},
+  {stage:"olymp", ctx:"Задание из олимпиады\n\nНайдите в каждом ряду лишнее слово по одному принципу.",
+   q:"В ряду «роется — рой — выроет» — все ли слова однокоренные?",
+   type:"mc", o:["Да, все однокоренные","Нет, рой от другого корня","Нет, выроет лишнее"], a:0,
+   fact:"Все три — однокоренные: корень -рой-/-ры- (рыть). Рой пчёл — омоним, другое слово!"},
+]},
 
-    // ── ИСКЛЮЧЕНИЯ/СЛОЖНЫЕ ───────────────────────────
-    {stage:"exception",
-     q:"В ряду «знамя — зной — знак — знание» найдите лишнее слово.",
-     type:"mc", o:["знамя","зной","знак","знание"], a:1,
-     fact:"«Зной» — от *znojь (жар), связан с «жечь». А «знамя», «знак», «знание» — от *znati (знать). Зной — «ложный друг», хотя начинается на «зн-»!"},
+{sec:1, title:"Орфография · Суффиксы -е/-и/-ин-",
+questions:[
+  {stage:"rule", q:"📜 ПРАВИЛО\n\nВишенка — буква в КОРНЕ (вишн-я → вишЕн-ка).\nГорошинка — суффикс -ин-: горош-ин-а.\nФранцуженка — суффикс -енк-: француж-енк-а.", type:"rule"},
 
-    {stage:"exception",
-     q:"В ряду «басня — баюкать — байк — баян» найдите лишнее слово.",
-     type:"mc", o:["басня","баюкать","байк","баян"], a:2,
-     fact:"«Байк» (bike) — английское слово. «Басня», «баюкать», «баян» — от корня *баj- (говорить нараспев, петь). Баян — инструмент певца!"},
+  {stage:"practice", q:"Как правильно: вишенка или вишинка?",
+   type:"mc", o:["вишенка","вишинка"], a:0,
+   fact:"Вишенка: корень вишн-я → беглая Е при уменьшении. Это исключение!"},
 
-    // ── ОЛИМПИАДНОЕ ЗАДАНИЕ ───────────────────────────
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов»\n\nНайдите в каждом ряду лишнее слово по одному и тому же принципу.",
-     q:"В ряду «роется — рой — выроет» — все ли слова однокоренные?",
-     type:"mc", o:["Да, все однокоренные (корень -рой-/-ры-)","Нет, «рой» — существительное, поэтому лишнее","Нет, «рой» от другого корня — значит «туча пчёл»","Нет, «выроет» лишнее — там приставка"], a:0,
-     fact:"Все три — однокоренные: корень -рой-/-ры- (рыть). «Рой» пчёл — омоним, другое слово! В данном ряду все слова от «рыть»."},
-  ]
-},
+  {stage:"practice", q:"Какой суффикс в слове «горошинка»?",
+   type:"mc", o:["-ин-","-енк-","-лен-","-ятин-"], a:0,
+   fact:"-ИН- — суффикс единичности: один предмет из множества."},
 
-{
-  sec:0, title:"Урок 2 · Исторические родственники",
-  questions:[
-    // ── ПРАВИЛО ──────────────────────────────────────
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nИсторические родственники — слова с общим древним корнем, которые в современном языке выглядят совсем разными.\n\nПример: <strong>пытаться</strong> и <strong>опыт</strong> — оба от корня *pyt- (испытывать). Сейчас родство не чувствуется!\n\nЕщё пример: <strong>наконец</strong> и <strong>закончился</strong> — корень -кон- (предел, граница).\n\nКак найти: ищи общий смысл в глубине, не на поверхности.", type:"rule"},
+  {stage:"exception", q:"Как правильно писать: спаленка или спалинка?",
+   type:"mc", o:["спаленка","спалинка"], a:0,
+   fact:"СпалЕнка: спальн-я → спал-ен-ка. Суффикс -лен- входит в производящую основу."},
 
-    {stage:"practice",
-     q:"«Пытались» и «опыт» — исторически родственные слова. Что их объединяет?",
-     type:"mc",
-     o:["Оба обозначают неудачу","Оба от корня *pyt- (испытывать, пробовать)","Оба пришли из латыни","Оба заимствованы из польского"],
-     a:1,
-     fact:"Корень *pyt- — испытывать. Пытаться = делать попытку. Опыт = результат испытания. В современном языке родство стёрлось."},
+  {stage:"olymp", ctx:"Задание из олимпиады 6 класс",
+   q:"В каком слове пропущенная буква находится в КОРНЕ?",
+   type:"mc", o:["горошинка","курятинка","вишенка","спаленка"], a:2,
+   fact:"Только в «вишенке» буква в корне. Во всех остальных — в суффиксе."},
+]},
 
-    {stage:"practice",
-     q:"«Наконец» и «закончившуюся» — исторические родственники. Какой корень их объединяет?",
-     type:"mc", o:["-кон-","-нач-","-нец-","-конец-"], a:0,
-     fact:"Корень -кон- = предел, граница. НаКОНец, заКОНчить, НАчало (от кона = начала), оКОНчание, поЧАток, заЧИН — все родственники через этот корень!"},
+{sec:2, title:"Морфология · Числительные",
+questions:[
+  {stage:"rule", q:"📜 ПРАВИЛО\n\nПорядковые (первый, сотый): РОД + ЧИСЛО + ПАДЕЖ\nКоличественные (один, два, сто): только ПАДЕЖ\n\nИсключение: один/одна, два/две — есть род!", type:"rule"},
 
-    {stage:"exception",
-     q:"«Броня» и «бранный» (бранное поле) — исторические родственники. Что значило «брань» в Древней Руси?",
-     type:"mc",
-     o:["Ругань, ссора","Война, битва","Одежда воина","Вид оружия"],
-     a:1,
-     fact:"В древнерусском «брань» = война, битва. Позже значение сузилось до «ругань». Поэтому «бранное поле» = поле битвы. «Броня» — тоже родственник: защита в бою!"},
+  {stage:"practice", q:"«До сто восьмой горошины» — какие признаки у «восьмой»?",
+   type:"mc", o:["Только падеж","Род + число + падеж","Только род"], a:1,
+   fact:"«Восьмой» — порядковое, как прилагательное: ж.р., ед.ч., Р.п."},
 
-    {stage:"olymp",
-     ctx:"Задание из Всероссийской олимпиады 2023/24\n\nПрочитайте предложения:\n1) Путешественники несколько раз пытались переправиться через реку на плотах...\n2) ...приобретают опыт общения со сверстниками...",
-     q:"Найдите в текстах глагол и существительное, которые являются историческими родственниками, но НЕ родственными в современном языке.",
-     type:"mc",
-     o:["переправиться — плот","пытались — опыт","переправиться — опыт","пытались — реку"],
-     a:1,
-     fact:"Пытались (глагол) + опыт (существительное) — оба от *pyt- (испытывать). В современном языке связь не ощущается — это и есть «исторические родственники»."},
-  ]
-},
+  {stage:"practice", q:"«По сто горошин» — есть ли у «сто» признак рода?",
+   type:"mc", o:["Да, средний род","Да, мужской род","Нет"], a:2,
+   fact:"«Сто» — количественное. Только падеж, нет рода и числа!"},
 
-/* ━━━━━━ РАЗДЕЛ 1: ЗЕЛЬЕВАРЕНИЕ (Орфография) ━━━━━━━━━ */
-{
-  sec:1, title:"Урок 3 · Суффиксы -е/-и/-ин-",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nКак различить суффиксы в словах типа «горошинка», «вишенка»:\n\n<strong>-ин-</strong> — суффикс единичности: горош<em>ин</em>ка (одна горошина)\n<strong>-енк-</strong> — национальность/происхождение: француж<em>енк</em>а\n<strong>-лен-</strong> — входит в основу: спал<em>ьн</em>я → спал<em>ен</em>ка\n<strong>Особый случай</strong>: <em>вишенка</em> — буква в корне! (вишн-я → вишЕн-ка, беглая Е)", type:"rule"},
+  {stage:"olymp", q:"«Две горошины» — есть ли у «две» признак рода?",
+   type:"mc", o:["Нет","Да, женский род","Да, средний род"], a:1,
+   fact:"«Два/две» — исключение! У них есть родовые формы. Часто вопрос-ловушка!"},
+]},
 
-    {stage:"practice",
-     q:"Как правильно: вишенка или вишинка?",
-     type:"mc", o:["вишенка","вишинка"], a:0,
-     fact:"Вишенка: корень вишн-я → беглая Е при уменьшении. Буква Е находится В КОРНЕ, а не в суффиксе. Это единственное исключение среди данных слов!"},
+{sec:3, title:"Лексика · Многозначность",
+questions:[
+  {stage:"rule", q:"📜 ПРАВИЛО\n\nМногозначность — одно слово, несколько значений.\n\n«Добрый» в пословицах часто означает:\n• сильный (добрый мороз)\n• большой (добрая часть)\n• хороший (добрая весть)", type:"rule"},
 
-    {stage:"practice",
-     q:"Какой суффикс в слове «горошинка»?",
-     type:"mc", o:["-ин-","-енк-","-лен-","-ятин-"], a:0,
-     fact:"-ИН- — суффикс единичности: горош-ин-а (одна штучка из массы). Жемчуж-ин-а, солом-ин-а — тот же суффикс. Запомни: -ин- = «один предмет из многих»."},
+  {stage:"practice", q:"«Добрый мороз до костей, а слабый теплом дразнит». Что значит «добрый»?",
+   type:"mc", o:["Отзывчивый","Сильный, крепкий","Большой"], a:1,
+   fact:"Антоним в предложении — «слабый». Значит, добрый = сильный!"},
 
-    {stage:"practice",
-     q:"Как правильно: спаленка или спалинка?",
-     type:"mc", o:["спаленка","спалинка"], a:0,
-     fact:"СпалЕнка: спальн-я → при образовании основа «спальн-» теряет ь, появляется -ен-ка. Аналог: ставн-я → ставен-ка. Суффикс -лен- входит в производящую основу."},
+  {stage:"exception", q:"«Скопить добро — трудно счастье купить». «Добро» означает...",
+   type:"mc", o:["Добрые дела","Имущество, богатство","Доброта"], a:1,
+   fact:"«Скопить добро» = накопить имущество. Устаревшее значение."},
+]},
 
-    {stage:"exception",
-     q:"Как правильно: куряТинка или куряТенка?",
-     type:"mc", o:["курятинка","курятенка"], a:0,
-     fact:"КурятИнка: суффикс -ятин- (курятина → курятинка). Это сложный суффикс с И. Сравни: говядина → говядинка. Суффикс -ятин- всегда с буквой И."},
+{sec:4, title:"Фонетика · Звуки и буквы",
+questions:[
+  {stage:"rule", q:"📜 ПРАВИЛО\n\nЗвуков и букв может быть РАЗНОЕ количество!\n\nЯ, Ё, Е, Ю после гласной = 2 звука: яма = [й'][а]ма\nЬ и Ъ не дают звука: лось = [лос']", type:"rule"},
 
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов» 2023/24",
-     q:"Даны слова: вишенка, горошинка, курятинка, спаленка, француженка.\n\nВ каком слове пропущенная буква находится в КОРНЕ?",
-     type:"mc",
-     o:["горошинка","курятинка","вишенка","спаленка","француженка"],
-     a:2,
-     fact:"Только в «вишенке» буква Е находится в корне (вишн- → вишЕн-). Во всех остальных словах буква в суффиксе. Это классический вопрос олимпиады на морфемный анализ!"},
-  ]
-},
+  {stage:"practice", q:"Сколько звуков в слове «яма»?",
+   type:"mc", o:["3","4","5"], a:1,
+   fact:"Яма: Я=[й'][а], м, а → 4 звука, но 3 буквы!"},
 
-{
-  sec:1, title:"Урок 4 · О/Ё/Ю после шипящих",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nПосле шипящих (ж, ш, ч, щ) в корне под ударением пишем <strong>Ё</strong>: жЁлтый, шЁпот.\n\nВ суффиксах и окончаниях под ударением пишем <strong>О</strong>: сапожОк, чащОба, рубашОнка.\n\n<strong>Ю</strong> после шипящих — только в иностранных словах: жЮри, парашЮт, брошЮра.\n\nЗапомни слова-исключения: крыжОвник, шОв, шОрох, шОры — О в корне!", type:"rule"},
-
-    {stage:"practice",
-     q:"Как пишется: чащОба или чащЁба?",
-     type:"mc", o:["чащоба","чащёба"], a:0,
-     fact:"ЧащОба — суффикс -об-а после шипящей под ударением → О. Запомни: в суффиксах и окончаниях после шипящих под ударением всегда О!"},
-
-    {stage:"practice",
-     q:"Как пишется: рубашОнка или рубашЁнка?",
-     type:"mc", o:["рубашонка","рубашёнка"], a:0,
-     fact:"РубашОнка — суффикс -онк- (уменьшительный с пренебрежением), ударный, после шипящей → О. Сравни: сапожОнки, салтычОнок. Ё только в корне!"},
-
-    {stage:"practice",
-     q:"Как пишется: жЮри или жЁри?",
-     type:"mc", o:["жюри","жёри","жори"], a:0,
-     fact:"ЖЮри — французское заимствование. После Ж пишем Ю только в иностранных словах: жюри, жюльен. Ещё: парашют, брошюра, монтажюр. Запомни их как список!"},
-
-    {stage:"exception",
-     q:"«Свёкла» — как пишется правильно?",
-     type:"mc", o:["свекла","свёкла","свокла"], a:1,
-     fact:"СвЁкла — обязательно Ё! Очень частая ошибка. Можно запомнить: у свЁклы бок красный — в слове «бок» слышим тот же звук. В словарях только вариант с Ё."},
-
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов» 2024/25\n\nДан список слов: адъютант, брошюра, печёнка, парашютист, сгущёнка, район, сундучок, чащоба, щётка...",
-     q:"Какие слова опровергают правило «Все позиции для Ю возможны и для Ё»?",
-     type:"multi",
-     o:["адъютант","парашютист","печёнка","сгущёнка"],
-     a:[0,1],
-     fact:"АдЪЮтант и парашЮтист: Ю стоит после твёрдого знака (ъ). После ъ буква Ё невозможна! Значит, позиция «после ъ» доступна Ю, но не Ё. Вот и опровержение."},
-  ]
-},
-
-/* ━━━━━━ РАЗДЕЛ 2: ТРАНСФИГУРАЦИЯ (Морфология) ━━━━━━━━ */
-{
-  sec:2, title:"Урок 5 · Числительные: морф. признаки",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nМорфологические признаки числительных:\n\n<strong>Порядковые</strong> (первый, сотый): есть РОД, ЧИСЛО, ПАДЕЖ — как у прилагательных.\n\n<strong>Количественные</strong> (один, сто, триста): только ПАДЕЖ.\nИсключение: <em>один/одна/одно</em> — есть род; <em>два/две</em> — есть род.\n\nСхема: порядковые = как прил. / количественные = только падеж (кроме один, два)", type:"rule"},
-
-    {stage:"practice",
-     q:"«До сто восьмой горошины» — какие признаки у числительного «восьмой»?",
-     type:"mc",
-     o:["Только падеж","Род + число + падеж","Только род","Нет признаков"],
-     a:1,
-     fact:"«Восьмой» — порядковое числительное, изменяется как прилагательное: ж.р., ед.ч., Р.п. Порядковые всегда имеют все три признака!"},
-
-    {stage:"practice",
-     q:"«По сто горошин» — есть ли у числительного «сто» признак рода?",
-     type:"mc",
-     o:["Да, средний род","Да, мужской род","Нет, рода нет","Зависит от контекста"],
-     a:2,
-     fact:"Количественное «сто» — нет рода, нет числа. Только падеж. Запомни: количественные числительные «застряли» — из всех признаков у них только падеж!"},
-
-    {stage:"exception",
-     q:"«Две горошины» — В. падеж. Есть ли у числительного «две» признак рода?",
-     type:"mc",
-     o:["Нет, количественные не имеют рода","Да, женский род (ж.р.)","Да, средний род","Зависит от падежа"],
-     a:1,
-     fact:"«Два/две» — исключение из количественных! У них есть родовые формы: два (м./ср.р.) и две (ж.р.). В олимпиадах это частый вопрос-ловушка!"},
-
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов» 2023/24\n\n...Досчитав до 108-й (горошина)... по 100 (горошина)... со 108 (горошина)... 2 (горошина)... из 333 (кучка)...",
-     q:"«Со ста восемью горошинами» — какой падеж у числительного «ста восемью»?",
-     type:"mc",
-     o:["Именительный","Родительный","Дательный","Творительный"],
-     a:3,
-     fact:"Предлог «со» + Тв. падеж. Составное числительное склоняется полностью: со стА восемьЮ. Каждая часть меняется! Это главная сложность числительных в олимпиадах."},
-  ]
-},
-
-{
-  sec:2, title:"Урок 6 · Субстантивация",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nСубстантивация — прилагательное становится существительным.\n\nПроверка: если к слову НЕЛЬЗЯ добавить существительное — оно субстантивировалось.\n\nПримеры:\n• «больной» (человек) → больной поправился ✓ субстантив.\n• «столовая» (комната) → ужинали в столовой ✓ субстантив.\n• «столовый прибор» → прибор есть рядом, значит НЕ субстантив.\n\nТест: «Первое было вкусным» — первое ЧТО? Нет слова → субстантивировано!", type:"rule"},
-
-    {stage:"practice",
-     q:"«На первое были щи, на второе — макароны». Слово «первое» здесь:",
-     type:"mc", o:["Прилагательное","Субстантивированное прилагательное","Существительное изначальное","Числительное"], a:1,
-     fact:"«Первое» (блюдо) → блюдо исчезло, слово взяло его роль. Тест: «первое ЧТО?» — ответа нет в предложении → субстантивировано!"},
-
-    {stage:"practice",
-     q:"«Ужинали в столовой». Слово «столовой» здесь:",
-     type:"mc", o:["Прилагательное","Субстантивированное прилагательное","Всегда было существительным"], a:1,
-     fact:"Исходно «столовая комната» → «комната» отпала. Сравни: «столовый прибор» — там прилагательное, прибор рядом. Гостиная, ванная, прихожая — по той же схеме!"},
-
-    {stage:"exception",
-     q:"«Тайное всегда становится явным». Слово «тайное» здесь:",
-     type:"mc", o:["Прилагательное","Субстантивированное прилагательное","Причастие"], a:1,
-     fact:"«Тайное» (дело) субстантивировалось — стало обозначать предмет. Средний род, нет поясняемого существительного рядом. Формула: если отвечает на вопрос «что?» — субстантив!"},
-
-    {stage:"olymp",
-     ctx:"Задание из Всероссийской олимпиады 6 класс 2021/22\n\nУкажите номера примеров, в которых прилагательные выполняют роль существительных (субстантивированы).",
-     q:"В каких примерах выделенное слово субстантивировано? (отметь все верные)\n1) На первое были щи, на второе — макароны\n2) Всю войну дед прошёл рядовым бойцом\n3) Тайное всегда становится явным\n4) Ужинали в столовой\n5) Чужого не брать!\n6) Взрослые люди нередко завидуют детям",
-     type:"multi",
-     o:["1 — первое, второе","2 — рядовым","3 — тайное","4 — в столовой","5 — чужого","6 — взрослые"],
-     a:[0,2,3,4],
-     fact:"Верные: 1 (первое/второе = блюдо), 3 (тайное = нечто), 4 (в столовой = в комнате), 5 (чужого = чужого имущества). «Рядовым бойцом» — прилагательное при существительном. «Взрослые люди» — тоже есть существительное рядом."},
-  ]
-},
-
-{
-  sec:2, title:"Урок 7 · Спряжения глаголов",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nII спряжение — глаголы на <strong>-ить</strong> (кроме: брить, стелить)\n+ 11 исключений на -еть и -ать:\n<em>ГНАТЬ, ДЕРЖАТЬ, ДЫШАТЬ, СЛЫШАТЬ, ВИДЕТЬ, СМОТРЕТЬ, ОБИДЕТЬ, ЗАВИСЕТЬ, НЕНАВИДЕТЬ, ВЕРТЕТЬ, ТЕРПЕТЬ</em>\n\nВсё остальное — I спряжение.\n\nПроверка при ударном окончании: ставь в 3 л. мн.ч.:\n-ут/-ют → I спр. | -ат/-ят → II спр.", type:"rule"},
-
-    {stage:"practice",
-     q:"Определи спряжение: молчать, спать, гореть, кричать",
-     type:"mc",
-     o:["Все I спряжения","Все II спряжения","Разные спряжения"],
-     a:1,
-     fact:"МолчАТ, спЯТ, горЯТ, кричАТ — окончания -ат/-ят, значит II спряжение! У этих глаголов ударное личное окончание — проверяй по нему, не по инфинитиву."},
-
-    {stage:"practice",
-     q:"Стелить — какое спряжение?",
-     type:"mc", o:["I спряжение","II спряжение"], a:0,
-     fact:"Стелить — ИСКЛЮЧЕНИЕ! Несмотря на -ить, это I спряжение: стелЮТ (не стелЯТ). Запомни пару: брить и стелить — оба на -ить, оба I спряжения."},
-
-    {stage:"exception",
-     q:"«Мурлыкать» — особенный глагол. Почему?",
-     type:"mc",
-     o:["Имеет два прошедших времени","Имеет две формы 3 л. мн. ч.: мурлыкают И мурлычут","Относится к разноспрягаемым","Не имеет повелительного наклонения"],
-     a:1,
-     fact:"МурлыкаЮТ и мурлыЧУТ — оба варианта правильны! Чередование к/ч. Аналоги: плескать → плескают/плещут; хлестать → хлещут. В олимпиадах такие глаголы — особый вопрос."},
-
-    {stage:"olymp",
-     ctx:"Задание из Всероссийской олимпиады 5-6 класс 2023/24",
-     q:"Укажите строку, в которой ВСЕ глаголы II спряжения:\n1) молчать, спать, гореть, кричать\n2) терпеть, вертеть, дышать, стелить\n3) пить, жить, лить, топить\n4) хотеть, есть, дать, бежать",
-     type:"mc", o:["1","2","3","4"], a:0,
-     fact:"Строка 1: все имеют ударные личные окончания -ат/-ят → II спряжение ✓. В строке 2 «стелить» — I спряж. (исключение!). В строке 3 «пить/жить/лить» — I спряж. В строке 4 «хотеть/бежать» — разноспрягаемые."},
-  ]
-},
-
-/* ━━━━━━ РАЗДЕЛ 3: ЗАЩИТА (Лексика) ━━━━━━━━━━━━━━━━━━ */
-{
-  sec:3, title:"Урок 8 · Многозначность: «добрый»",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nМногозначность — одно слово, несколько значений.\n\nСлово <strong>«добрый»</strong> в пословицах часто означает НЕ «добросердечный», а:\n• <em>сильный, крепкий</em> — «добрый мороз»\n• <em>большой, значительный</em> — «добрая часть»\n• <em>хороший, положительный</em> — «добрая весть»\n• <em>отзывчивый</em> — «добрый человек»\n\nКак определить значение: смотри на контекст и подставляй синоним!\nАнтоним в том же предложении тоже подсказывает значение.", type:"rule"},
-
-    {stage:"practice",
-     q:"«Добрый мороз до костей пробирает, а слабый только теплом дразнит». Что значит «добрый» здесь?",
-     type:"mc", o:["Отзывчивый","Сильный, крепкий","Большой","Хороший"], a:1,
-     fact:"Антоним в том же предложении — «слабый». Значит «добрый» = «сильный, настоящий, крепкий». Так часто в народных пословицах!"},
-
-    {stage:"practice",
-     q:"«Добрая часть успеха — это работа без спеха». Что значит «добрая»?",
-     type:"mc", o:["Большая, значительная","Хорошая","Добросердечная","Настоящая"], a:0,
-     fact:"«Добрая часть» = большая, немалая часть. Устаревшее значение сохранилось в пословицах. В предложениях 3, 4, 7 антонима к выделенному слову нет — это олимпиадный вопрос!"},
-
-    {stage:"exception",
-     q:"«Легко добро скопить — трудно счастье купить». «Добро» здесь — это...",
-     type:"mc", o:["Добрые поступки","Имущество, богатство","Доброта","Всё хорошее в жизни"], a:1,
-     fact:"«Скопить добро» = накопить имущество. Устаревшее значение живёт в «нажить добришко». Антонима в этом предложении нет — значит, это предложение входит в ответ на олимпиадный вопрос!"},
-
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов» 2024/25\n\nДаны предложения с подчёркнутыми словами:\n3. Добрая часть успеха — это работа без спеха.\n4. Худо станет тому, кто добра не сделает никому.\n7. Легко добро скопить — трудно счастье купить.",
-     q:"В каких предложениях НЕТ слова, находящегося в отношениях антонимии с подчёркнутым?",
-     type:"multi",
-     o:["Предложение 3","Предложение 4","Предложение 7"],
-     a:[0,1,2],
-     fact:"В предложениях 3, 4, 7 нет прямого антонима к подчёркнутому слову в том же предложении. В предл. 1 («добрый» — «слабый»), 2 («добрая» — «плохая»), 5 («добро» — «худо»), 6 («добра» — «не зол») антонимы есть!"},
-  ]
-},
-
-{
-  sec:3, title:"Урок 9 · Фразеологизмы-синонимы",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nФразеологизмы-синонимы — разные обороты с одним значением.\n\nПримеры пар:\n• бить баклуши = гонять лодыря (бездельничать)\n• сыграть в ящик = дать дуба (умереть)\n• ума палата = светлая голова (очень умный)\n• где раки зимуют = за тридевять земель (далеко)\n• попасть впросак = сесть в лужу (оказаться в неловкой ситуации)\n\nЗапомни: одно значение — разный образ!", type:"rule"},
-
-    {stage:"practice",
-     q:"«Бить баклуши» — баклуши это...",
-     type:"mc",
-     o:["Деревянные заготовки для ложек","Старинные кандалы","Вид карточной игры","Кочки на болоте"],
-     a:0,
-     fact:"Баклуши = деревянные чурки для ложек. Самая лёгкая работа в артели — её давали подмастерьям. Отсюда «бить баклуши» = бездельничать. История слова объясняет смысл!"},
-
-    {stage:"practice",
-     q:"Выбери синоним к фразеологизму «бить баклуши»:",
-     type:"mc", o:["сесть в лужу","гонять лодыря","дать дуба","ума палата"], a:1,
-     fact:"Гонять лодыря = бездельничать. Лодырь (от нем. Lotterbube) — бездельник, лентяй. Пара: бить баклуши — гонять лодыря — оба про безделье."},
-
-    {stage:"exception",
-     q:"«Сыграть в ящик» и «дать дуба» — что они значат?",
-     type:"mc", o:["Сделать глупость","Умереть","Сильно устать","Проиграть"], a:1,
-     fact:"Оба — эвфемизмы смерти. «Дать дуба»: возможно, от «дубеть» (деревенеть). Ещё синонимы: отдать концы, откинуть копыта, сыграть в ящик (гробовой ящик)."},
-
-    {stage:"olymp",
-     ctx:"Задание из Всероссийской олимпиады 6 класс 2021/22\n\nСоставьте из десяти фразеологизмов пять пар, руководствуясь некоторым принципом.",
-     q:"Какой принцип объединяет фразеологизмы в пары?\n«Попасть впросак» и «Сесть в лужу»\n«Ума палата» и «Светлая голова»",
-     type:"mc",
-     o:["Антонимия","Синонимия","Омонимия","Тематическое сходство"],
-     a:1,
-     fact:"Синонимия! Попасть впросак = сесть в лужу (оказаться в неловкой ситуации). Ума палата = светлая голова (умный человек). Фразеологизмы-синонимы — разные образы, одно значение."},
-  ]
-},
-
-/* ━━━━━━ РАЗДЕЛ 4: ЗАКЛИНАНИЯ (Фонетика) ━━━━━━━━━━━━━ */
-{
-  sec:4, title:"Урок 10 · Звуки и буквы",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nЗвуков и букв может быть РАЗНОЕ количество!\n\n<strong>Звуков БОЛЬШЕ, чем букв</strong>:\nЯ, Ё, Е, Ю после гласной или в начале слова дают 2 звука:\nяма = [й'а]ма (4 буквы, 5 звуков)\n\n<strong>Звуков МЕНЬШЕ, чем букв</strong>:\nЬ и Ъ — не дают звука: лось = [лос'] (4 буквы, 3 звука)\nДвойные согласные: касса = [каса] (5 букв, 4 звука)\n\nПодсказка: транскрибируй слово и считай квадратные скобки!", type:"rule"},
-
-    {stage:"practice",
-     q:"Сколько звуков в слове «яма»?",
-     type:"mc", o:["3","4","5","6"], a:2,
-     fact:"Яма: Я в начале = [й'][а], затем [м][а]. Итого: [й'][а][м][а] = 4 звука, но 3 буквы... стоп! Яма = 3 буквы, 4 звука. Я → 2 звука!"},
-
-    {stage:"practice",
-     q:"В слове «ваятель» звуков больше или меньше, чем букв?",
-     type:"mc", o:["Больше (8 звуков, 7 букв)","Меньше (6 звуков, 7 букв)","Поровну"], a:0,
-     fact:"Ваятель: В-А-Я-Т-Е-Л-Ь = 7 букв. Я после гласной А = [й'][а]. Итого: [в][а][й'][а][т'][э][л'] = 8 звуков! Именно поэтому «ваятель» — слово с бо́льшим числом звуков в олимпиадном задании."},
-
-    {stage:"exception",
-     q:"В слове «кремень» сколько ТВЁРДЫХ согласных звуков?",
-     type:"mc", o:["0","1","2","3"], a:1,
-     fact:"Кремень: [к][р'][э][м'][э][н']. Твёрдый здесь только [к]! Все остальные согласные смягчены перед Е или перед мягким. В олимпиаде это слово — «с одним твёрдым звуком»."},
-
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов» 2021/22\n\nВ каком (каких) из слов количество звуков и букв НЕ совпадает?",
-     q:"В каком слове звуков и букв РАЗНОЕ количество?\nящик / гостья / яства / пьеска",
-     type:"multi",
-     o:["ящик","гостья","яства","пьеска"],
-     a:[0,1,2,3],
-     fact:"Ящик: Я→[й'а]+щик = 6б, 6зв... нет, Я=2зв → [й'][а][щ'][и][к] = 5зв, 5б. Гостья: ь не звучит, я=[й'а] → 6б, 5зв. Яства: Я=2зв → несовпадение. Пьеска: Ь+Е=[й'э] → несовпадение. Все четыре!"},
-  ]
-},
-
-{
-  sec:4, title:"Урок 11 · Мягкость согласных",
-  questions:[
-    {stage:"rule", q:"📜 ПРАВИЛО\n\nМягкость согласных бывает четырёх типов:\n\n1️⃣ Перед <strong>Ь</strong> — мягкость обозначена буквой: сторожиТь\n2️⃣ Перед <strong>мягкой гласной</strong> (е, и, ё, ю, я) — буква гласной обозначает мягкость: тиТина\n3️⃣ <strong>Непарные мягкие</strong> (ч, щ, й) — всегда мягкие, Ь не нужен: помоЩь (щ всегда мягкий)\n4️⃣ <strong>Ассимиляция</strong> — согласный смягчается перед другим мягким: барабаНщик ([н'] мягкий перед [щ'])", type:"rule"},
-
-    {stage:"practice",
-     q:"В слове «сторожить» буква Т — мягкий звук. Как обозначена мягкость?",
-     type:"mc",
-     o:["Стоит перед мягкой гласной И","Стоит перед Ь","Ассимиляция перед мягким согласным","Т — непарный мягкий"],
-     a:1,
-     fact:"СторожиТь: [т'] мягкий потому, что следующая буква — Ь. Это самый «видимый» способ обозначения мягкости на письме."},
-
-    {stage:"practice",
-     q:"В слове «помощник» буква Щ всегда мягкая. Почему?",
-     type:"mc",
-     o:["Перед Ь","Ассимиляция перед Н","Непарный мягкий звук — всегда мягкий","Перед гласной И"],
-     a:2,
-     fact:"Щ — непарный мягкий звук (как Й, Ч). Он всегда мягкий независимо от соседей. Поэтому «щ» никогда не обозначают твёрдым."},
-
-    {stage:"exception",
-     q:"В слове «барабанщик» буква Н — мягкий звук. Почему?",
-     type:"mc",
-     o:["Стоит перед мягкой гласной","Мягкость обозначена Ь","Смягчился перед мягким Щ (ассимиляция)","Н — непарный мягкий"],
-     a:2,
-     fact:"БарабаНщик: [н'] смягчился перед [щ'] — ассимиляция по мягкости! На письме это НЕ обозначается. Согласный «заразился» мягкостью от соседа."},
-
-    {stage:"olymp",
-     ctx:"Задание из олимпиады «Ломоносов» 2021/22\n\nРаспределите слова, в которых есть мягкие звуки, по группам в соответствии со способом обозначения мягкости.",
-     q:"В каких словах мягкость согласного, обозначенного Ь, НЕ зависит от следующего звука? (отметь все)",
-     type:"multi",
-     o:["косьба","мостик","тесьма","авоська","сдёрнуть"],
-     a:[0,2,3],
-     fact:"Косьба, тесьма, авоська: Ь стоит перед твёрдым согласным — значит, мягкость самостоятельная, не ассимилятивная. В «мостик» и «сдёрнуть» мягкость от соседнего мягкого звука (ассимиляция)."},
-  ]
-},
-
+  {stage:"exception", q:"В слове «кремень» сколько ТВЁРДЫХ согласных?",
+   type:"mc", o:["0","1","2"], a:1,
+   fact:"[к][р'][э][м'][э][н']. Твёрдый только [к]! Остальные смягчены."},
+]},
 ];
 
-/* ═══════════════════════════════════════════════════════
-   ДВИЖОК
-═══════════════════════════════════════════════════════ */
-let ST = JSON.parse(localStorage.getItem("hogRus3")||'{"pts":0,"done":[],"streak":0,"lastDate":"","sec":0}');
+/* ═════════════════════════════════════════════════════════════
+   ЛОГИКА
+═════════════════════════════════════════════════════════════ */
+let ST = JSON.parse(localStorage.getItem("olym")||'{"pts":0,"done":[],"streak":0,"lastDate":"","sec":0}');
 let curDay=0, curQ=0, correct=0;
-const save = ()=>localStorage.setItem("hogRus3",JSON.stringify(ST));
+const save = ()=>localStorage.setItem("olym",JSON.stringify(ST));
 const norm = s=>s.toLowerCase().trim().replace(/ё/g,"е").replace(/\s+/g," ");
 
 const secDays = ()=>DAYS.map((d,i)=>({...d,idx:i})).filter(d=>d.sec===ST.sec);
@@ -731,20 +438,13 @@ function setProg(){
   document.getElementById("prog").style.width=Math.round((curQ/day.questions.length)*100)+"%";
 }
 
-const STAGE_META={
-  rule:     {cls:"stage-rule",     label:"📖 Правило"},
-  practice: {cls:"stage-practice", label:"⚡ Практика"},
-  exception:{cls:"stage-exception",label:"🔥 Исключение"},
-  olymp:    {cls:"stage-olymp",    label:"🏆 Олимпиада"},
-};
-
 function award(fb,ok,show,fact,card){
   if(ok){
-    fb.textContent="🎉 Верно! +1 ⚡"; fb.style.color="var(--ok)";
+    fb.textContent="✓ Верно!"; fb.style.color="var(--ok)";
     ST.pts++; correct++; save(); updHdr();
     card.classList.add("flash-ok"); setTimeout(()=>card.classList.remove("flash-ok"),600);
   } else {
-    fb.textContent="Не беда, запомним! 💪"; fb.style.color="var(--err)";
+    fb.textContent="Не беда"; fb.style.color="var(--err)";
     card.classList.add("flash-err"); setTimeout(()=>card.classList.remove("flash-err"),500);
     if(show){const h=document.createElement("div");h.className="hint-ans";h.textContent="Ответ: "+show;fb.after(h);}
   }
@@ -752,6 +452,9 @@ function award(fb,ok,show,fact,card){
     const f=document.createElement("div");f.className="fun-fact";f.textContent=fact;
     card.querySelector(".options,input")?.after?.(f) || card.appendChild(f);
   }
+  const m=document.createElement("div");
+  m.className="motivation";m.textContent=getQuote();
+  card.appendChild(m);
 }
 
 function addNext(card){
@@ -766,16 +469,14 @@ function renderQ(){
   const item=day.questions[curQ];
   const sec=SEC[day.sec];
   const card=document.getElementById("card");
-  const sm=STAGE_META[item.stage]||STAGE_META.practice;
 
-  // Если это "rule" — особый рендер
   if(item.stage==="rule"){
     card.innerHTML=`
       <div class="mascot">${sec.emoji}</div>
       <div class="q-meta">${day.title} · вопрос ${curQ+1}/${day.questions.length}</div>
-      <span class="stage-badge ${sm.cls}">${sm.label}</span>
+      <div class="stage-badge">Правило</div>
       <div class="scroll-box">
-        <div class="scroll-title">Заклинание дня</div>
+        <div class="scroll-title">Запомни</div>
         <div class="scroll-body">${item.q}</div>
       </div>`;
     const b=document.createElement("button");b.className="rule-btn";
@@ -786,14 +487,14 @@ function renderQ(){
   }
 
   let html=`<div class="mascot">${sec.emoji}</div>
-    <div class="q-meta">${day.title} · вопрос ${curQ+1}/${day.questions.length}</div>
-    <span class="stage-badge ${sm.cls}">${sm.label}</span>`;
+    <div class="q-meta">${day.title} · ${curQ+1}/${day.questions.length}</div>
+    <div class="stage-badge">${item.stage==="practice"?"Практика":item.stage==="exception"?"Исключение":"Олимпиада"}</div>`;
   if(item.ctx) html+=`<div class="ctx">${item.ctx}</div>`;
   html+=`<div class="question">${item.q}</div>`;
 
   if(item.type==="input"){
-    html+=`<input class="txt-input" id="ti" placeholder="Введи ответ…" autocomplete="off">
-      <button class="check-btn" id="ck">Проверить ✓</button><div class="feedback" id="fb"></div>`;
+    html+=`<input class="txt-input" id="ti" placeholder="Ответ…" autocomplete="off">
+      <button class="check-btn" id="ck">Проверить</button><div class="feedback" id="fb"></div>`;
     card.innerHTML=html;
     document.getElementById("ck").onclick=()=>{
       const v=norm(document.getElementById("ti").value); if(!v)return;
@@ -804,7 +505,7 @@ function renderQ(){
     };
   } else if(item.type==="multi"){
     html+=`<div class="options">${item.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")}</div>
-      <button class="check-btn" id="ck">Проверить ✓</button><div class="feedback" id="fb"></div>`;
+      <button class="check-btn" id="ck">Проверить</button><div class="feedback" id="fb"></div>`;
     card.innerHTML=html;
     const sel=new Set();
     card.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
@@ -849,14 +550,14 @@ function renderResult(){
   updHdr();renderDays();
   document.getElementById("prog").style.width="100%";
   const pct=Math.round((correct/Math.max(total,1))*100);
-  const emoji=pct===100?"🏆":pct>=70?"⚡":"🌱";
-  const msg=pct===100?"Идеально! Ты настоящий маг!":pct>=70?"Отличная работа!":"Практикуйся — и будет лучше!";
+  const emoji=pct===100?"🎉":pct>=70?"✨":"🌱";
+  const msg=pct===100?"Идеально!":pct>=70?"Отлично!":"Практикуйся!";
   document.getElementById("card").innerHTML=`
     <div class="big">${emoji}</div>
     <div class="result-text">${msg}</div>
-    <div class="result-sub">Правильных ответов: ${correct} из ${total}</div>
-    <div class="stars-row">${"⚡".repeat(Math.max(1,Math.min(correct,8)))}</div>
-    <button class="next-btn" onclick="location.reload()">← К урокам</button>`;
+    <div class="result-sub">Правильно: ${correct} из ${total}</div>
+    <div class="stars-row">${"⭐".repeat(Math.max(1,Math.min(correct,8)))}</div>
+    <button class="next-btn" onclick="location.reload()">← Назад</button>`;
 }
 
 updHdr();renderTabs();renderDays();renderQ();
