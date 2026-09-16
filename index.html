@@ -7,7 +7,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Олимпиадка · Русский язык</title>
 <style>
-/* ── ЦВЕТОВАЯ СИСТЕМА ─────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   ЦВЕТОВАЯ СИСТЕМА — МЯТНЫЙ, ЗЕЛЁНЫЙ, СИНИЙ
+═══════════════════════════════════════════════════════════ */
 :root {
   --bg:       oklch(98% 0.005 170);
   --surface:  oklch(100% 0 0);
@@ -63,27 +65,8 @@ body {
   color:var(--mint-dim);
 }
 
-/* ── ВКЛАДКИ ──────────────────────────────────────────────── */
-.tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
-.tab {
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:7px 13px;
-  font-size:12px;font-weight:700;
-  cursor:pointer;
-  background:var(--surface);
-  color:var(--muted);
-  transition:transform .12s,all .15s;
-}
-.tab:active { transform:scale(.93); }
-.tab.active {
-  background:var(--mint-bg);
-  color:var(--mint-dim);
-  border-color:var(--mint);
-}
-
 /* ── ДНИ ──────────────────────────────────────────────────── */
-.days { display:grid; grid-template-columns:repeat(5,1fr); gap:7px; margin-bottom:12px; }
+.days { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-bottom:12px; }
 .day-btn {
   border:1px solid var(--border);
   border-radius:14px;
@@ -120,15 +103,6 @@ body {
 .mascot { font-size:36px; text-align:center; margin-bottom:5px; }
 .q-meta { text-align:center; font-size:11px; font-weight:700; color:var(--muted); margin-bottom:10px; letter-spacing:.04em; text-transform:uppercase; }
 
-/* ── ЭТАП УРОКА ───────────────────────────────────────────── */
-.stage-badge {
-  display:inline-flex;align-items:center;gap:5px;
-  border-radius:9px;padding:4px 11px;
-  font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
-  margin-bottom:12px;
-  background:var(--mint-bg);color:var(--mint-dim);border:1px solid oklch(72% 0.15 170 / .3);
-}
-
 /* ── СВИТОК (ПРАВИЛО) ─────────────────────────────────────── */
 .scroll-box {
   background:var(--mint-bg);
@@ -146,19 +120,6 @@ body {
 }
 .scroll-body strong { color:var(--mint-dim); font-weight:700; }
 .scroll-body em { color:var(--green); font-style:normal; font-weight:600; }
-
-/* ── КОНТЕКСТ ─────────────────────────────────────────────── */
-.ctx {
-  background:var(--raised);
-  border:1px solid var(--border);
-  border-left:3px solid var(--blue);
-  border-radius:12px;
-  padding:11px 14px;
-  font-size:13px;color:var(--text);
-  line-height:1.6;white-space:pre-line;
-  margin-bottom:14px;
-  max-height:160px;overflow-y:auto;
-}
 
 /* ── ВОПРОС ───────────────────────────────────────────────── */
 .question {
@@ -215,18 +176,6 @@ body {
 }
 .motivation::before { content:'🎵 '; }
 
-/* ── ФАН-ФАКТ ─────────────────────────────────────────────── */
-.fun-fact {
-  background:var(--green-bg);
-  border:1px solid var(--green);
-  border-left:3px solid var(--green);
-  border-radius:10px;
-  padding:10px 12px;
-  font-size:12.5px;color:var(--text);
-  margin-top:10px;line-height:1.55;
-}
-.fun-fact::before { content:'💡 '; font-weight:700; }
-
 /* ── КНОПКИ ───────────────────────────────────────────────── */
 .check-btn,.next-btn,.rule-btn {
   display:block;width:100%;
@@ -264,14 +213,13 @@ body {
 <div class="app">
 
   <div class="header">
-    <h1>Олимпиадка</h1>
+    <h1>Олимпиадка 🎯</h1>
     <div class="stats">
       <div class="stat">⭐ <span id="stars">0</span></div>
       <div class="stat">🔥 <span id="streak">0</span></div>
     </div>
   </div>
 
-  <div class="tabs" id="tabs"></div>
   <div class="prog-wrap"><div class="prog-fill" id="prog" style="width:0%"></div></div>
   <div class="days" id="days"></div>
   <div class="card" id="card"></div>
@@ -281,179 +229,192 @@ body {
 /* ═══════════════════════════════════════════════════════════
    МОТИВИРУЮЩИЕ ФРАЗЫ
 ═══════════════════════════════════════════════════════════ */
-const QUOTES = [
-  "Lose Yourself — You only get one shot",
-  "Without Me — I'm back",
-  "Mockingbird — Sing their song",
-  "Город поёт — Феникс",
-  "Один в поле воин — Bearwolf",
-  "Gossip — Måneskin",
-  "Begging — Måneskin",
-  "Мы поём — Hatters",
-];
-const getQuote = () => QUOTES[Math.floor(Math.random() * QUOTES.length)];
-
-/* ═════════════════════════════════════════════════════════════
-   РАЗДЕЛЫ
-═════════════════════════════════════════════════════════════ */
-const SEC = [
-  { name:"Этимология", emoji:"🔮" },
-  { name:"Орфография", emoji:"✍️" },
-  { name:"Морфология", emoji:"🧩" },
-  { name:"Лексика", emoji:"📖" },
-  { name:"Фонетика", emoji:"🎵" },
+const QUOTES_OK = [
+  "Look, if you had one shot or one opportunity",
+  "You better lose yourself in the music",
+  "This opportunity comes once in a lifetime",
+  "Everything's gonna be alright",
+  "I wanna be a champion",
+  "Кто ставит на всё — тому и везёт",
+  "Вижу цель, вижу преграды",
+  "Двигаюсь уверенно, как стрелки на часах",
+  "Пусть не уверен, но слово — кремень",
+  "Город поёт со мной в унисон",
+  "Now, this looks like a job for me",
+  "Could start a revolution",
+  "This is what I'll give ya",
+  "О, пролетели мимо пули",
 ];
 
+const QUOTES_ERR = [
+  "His palms are sweaty, knees weak, arms are heavy",
+  "Snap back to reality",
+  "I can see you're sad, even when you smile",
+  "Now hush, little baby, don't you cry",
+  "I wanna be a loser",
+  "Nobody loves a gloomy face",
+  "You're not iconic, you are just like them all",
+  "Все кричат: Безумец!",
+  "Да, со мной не просто, а кому сейчас легко?",
+  "Как об стену горох",
+  "Да, я такой же, как все",
+  "Но, я иногда ваще",
+  "Времени на отдых нет",
+  "This place is a circus, you just see the surface",
+];
+
+const getQuote = ok => (ok ? QUOTES_OK : QUOTES_ERR)[Math.floor(Math.random()*(ok?QUOTES_OK.length:QUOTES_ERR.length))];
+
 /* ═════════════════════════════════════════════════════════════
-   ДОМА (упрощённый вариант - первый набор уроков)
+   ЗАДАНИЯ (3 урока)
 ═════════════════════════════════════════════════════════════ */
 const DAYS = [
-{sec:0, title:"Этимология · Ложные родственники",
+// ─────────────────────────────────────────────────────────────
+// УРОК 1: Приставки ПРИ-/ПРЕ-
+// ─────────────────────────────────────────────────────────────
+{title:"Приставки ПРИ-/ПРЕ-",
 questions:[
-  {stage:"rule", q:"📜 ПРАВИЛО\n\nПохожие слова — не всегда родственники!\n«Ложные родственники» похожи по звуку, но их корни разные.\n\nПримеры:\n• бедро и беда — похожи, но от разных корней!\n• зной и знак — начинаются на «зн-», но не родственники", type:"rule"},
-  
-  {stage:"practice", q:"Какое слово НЕ является однокоренным с остальными в ряду?\nбеда — бедность — победа — бедро",
-   type:"mc", o:["беда","бедность","победа","бедро"], a:3,
-   fact:"«Бедро» — от *bedro (ляжка). Совсем другое значение! Это классическая ловушка олимпиады."},
+  {stage:"rule", q:"📜 ПРАВИЛО\n\n<strong>ПРИ-</strong> пишется:\n• приближение (прибежать)\n• присоединение (приклеить)\n• близость (пришкольный)\n• неполнота действия (приоткрыть)\n\n<strong>ПРЕ-</strong> пишется:\n• = очень (прекрасный = очень красивый)\n• = пере- (преградить = перегородить)", type:"rule"},
 
-  {stage:"practice", q:"В ряду «питьё — пир — пиявка — пища» найдите слово, НЕ однокоренное с остальными.",
-   type:"mc", o:["питьё","пир","пиявка","пища"], a:3,
-   fact:"«Пища» — от *pitati (кормить). Питьё, пир, пиявка — все от *piti (пить)."},
-
-  {stage:"exception", q:"В ряду «знамя — зной — знак — знание» найдите лишнее слово.",
-   type:"mc", o:["знамя","зной","знак","знание"], a:1,
-   fact:"«Зной» — от *znojь (жара). А знамя, знак, знание — от *znati (знать). Зной — ложный друг!"},
-
-  {stage:"olymp", ctx:"Задание из олимпиады\n\nНайдите в каждом ряду лишнее слово по одному принципу.",
-   q:"В ряду «роется — рой — выроет» — все ли слова однокоренные?",
-   type:"mc", o:["Да, все однокоренные","Нет, рой от другого корня","Нет, выроет лишнее"], a:0,
-   fact:"Все три — однокоренные: корень -рой-/-ры- (рыть). Рой пчёл — омоним, другое слово!"},
+  {q:"пр..поднести", type:"mc", o:["Е","И"], a:1, fact:"ПРИподнести — неполнота действия (немного поднести)"},
+  {q:"пр..льщать", type:"mc", o:["Е","И"], a:0, fact:"ПРЕльщать — очень льстить, сильно привлекать"},
+  {q:"пр..старелый", type:"mc", o:["Е","И"], a:0, fact:"ПРЕстарелый — очень старый"},
+  {q:"пр..исполненный", type:"mc", o:["Е","И"], a:0, fact:"ПРЕисполненный — очень полный (переполненный)"},
+  {q:"пр..пинания (знаки)", type:"mc", o:["Е","И"], a:0, fact:"ПРЕпинания — устоявшееся сочетание, запоминаем"},
+  {q:"в пр..дверии", type:"mc", o:["Е","И"], a:0, fact:"в ПРЕДдверии — буквально 'перед дверью'"},
+  {q:"пр..обладание", type:"mc", o:["Е","И"], a:0, fact:"ПРЕобладание — превосходство, больше всех"},
+  {q:"пр..образование", type:"mc", o:["Е","И"], a:0, fact:"ПРЕобразование — изменение, пере-"},
+  {q:"пр..дел (беспр..дельный)", type:"mc", o:["Е","И"], a:0, fact:"ПРЕдел — граница, то что нельзя ПЕРЕйти"},
+  {q:"пр..кратить", type:"mc", o:["Е","И"], a:0, fact:"ПРЕкратить — полностью остановить"},
+  {q:"пр..пирательство", type:"mc", o:["Е","И"], a:0, fact:"ПРЕпирательство — спор, пере-"},
+  {q:"пр..имущество", type:"mc", o:["Е","И"], a:0, fact:"ПРЕимущество — перевес, больше чем у других"},
+  {q:"пр..дседатель", type:"mc", o:["Е","И"], a:0, fact:"ПРЕДседатель — тот, кто сидит ПЕРЕД всеми"},
+  {q:"пр..вратности (судьбы)", type:"mc", o:["Е","И"], a:0, fact:"ПРЕвратности — переменчивость, изменения"},
+  {q:"пр..ступник", type:"mc", o:["Е","И"], a:0, fact:"ПРЕступник — тот, кто ПЕРЕступил закон"},
 ]},
 
-{sec:1, title:"Орфография · Суффиксы -е/-и/-ин-",
+// ─────────────────────────────────────────────────────────────
+// УРОК 2: ПОЛ-/ПОЛУ-
+// ─────────────────────────────────────────────────────────────
+{title:"ПОЛ-/ПОЛУ- (дефис или слитно)",
 questions:[
-  {stage:"rule", q:"📜 ПРАВИЛО\n\nВишенка — буква в КОРНЕ (вишн-я → вишЕн-ка).\nГорошинка — суффикс -ин-: горош-ин-а.\nФранцуженка — суффикс -енк-: француж-енк-а.", type:"rule"},
+  {stage:"rule", q:"📜 ПРАВИЛО\n\n<strong>ПОЛ-</strong> через <em>дефис</em>:\n• перед прописными: пол-Москвы\n• перед Л: пол-лимона\n• перед гласными: пол-озера\n\nОстальные случаи — <em>слитно</em>: полгода\n\n<strong>ПОЛУ-</strong> всегда <em>слитно</em>: полуостров", type:"rule"},
 
-  {stage:"practice", q:"Как правильно: вишенка или вишинка?",
-   type:"mc", o:["вишенка","вишинка"], a:0,
-   fact:"Вишенка: корень вишн-я → беглая Е при уменьшении. Это исключение!"},
-
-  {stage:"practice", q:"Какой суффикс в слове «горошинка»?",
-   type:"mc", o:["-ин-","-енк-","-лен-","-ятин-"], a:0,
-   fact:"-ИН- — суффикс единичности: один предмет из множества."},
-
-  {stage:"exception", q:"Как правильно писать: спаленка или спалинка?",
-   type:"mc", o:["спаленка","спалинка"], a:0,
-   fact:"СпалЕнка: спальн-я → спал-ен-ка. Суффикс -лен- входит в производящую основу."},
-
-  {stage:"olymp", ctx:"Задание из олимпиады 6 класс",
-   q:"В каком слове пропущенная буква находится в КОРНЕ?",
-   type:"mc", o:["горошинка","курятинка","вишенка","спаленка"], a:2,
-   fact:"Только в «вишенке» буква в корне. Во всех остальных — в суффиксе."},
+  {q:"пол..города", type:"mc", o:["дефис","слитно"], a:1, fact:"полгорода — согласная Г, не Л"},
+  {q:"пол..жизни", type:"mc", o:["дефис","слитно"], a:1, fact:"полжизни — Ж не Л, слитно"},
+  {q:"пол..мандарина", type:"mc", o:["дефис","слитно"], a:1, fact:"полмандарина — согласная М"},
+  {q:"пол..года", type:"mc", o:["дефис","слитно"], a:1, fact:"полгода — согласная Г"},
+  {q:"пол..часа", type:"mc", o:["дефис","слитно"], a:1, fact:"полчаса — согласная Ч"},
+  {q:"пол..мира", type:"mc", o:["дефис","слитно"], a:1, fact:"полмира — согласная М"},
+  {q:"пол..Азии", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-Азии — прописная буква!"},
+  {q:"пол..Европы", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-Европы — прописная буква!"},
+  {q:"пол..России", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-России — прописная буква!"},
+  {q:"пол..Москвы", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-Москвы — прописная буква!"},
+  {q:"пол..Америки", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-Америки — прописная буква!"},
+  {q:"пол..Франции", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-Франции — прописная буква!"},
+  {q:"пол..яблока", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-яблока — начинается с гласной Я"},
+  {q:"пол..апельсина", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-апельсина — начинается с гласной А"},
+  {q:"пол..огурца", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-огурца — начинается с гласной О"},
+  {q:"пол..арбуза", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-арбуза — начинается с гласной А"},
+  {q:"пол..ананаса", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-ананаса — начинается с гласной А"},
+  {q:"пол..леса", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-леса — начинается с буквы Л!"},
+  {q:"в пол..лица", type:"mc", o:["дефис","слитно"], a:0, fact:"в пол-лица — начинается с буквы Л!"},
+  {q:"пол..луга", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-луга — начинается с буквы Л!"},
+  {q:"пол..листа", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-листа — начинается с буквы Л!"},
+  {q:"пол..ленты", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-ленты — начинается с буквы Л!"},
+  {q:"полу..остров", type:"mc", o:["дефис","слитно"], a:1, fact:"полуостров — ПОЛУ- всегда слитно!"},
+  {q:"полу..проводники", type:"mc", o:["дефис","слитно"], a:1, fact:"полупроводники — ПОЛУ- всегда слитно!"},
+  {q:"пол..одиннадцатого", type:"mc", o:["дефис","слитно"], a:0, fact:"пол-одиннадцатого — гласная О"},
+  {q:"пол..третьего", type:"mc", o:["дефис","слитно"], a:1, fact:"полтретьего — согласная Т"},
+  {q:"пол..двенадцатого", type:"mc", o:["дефис","слитно"], a:1, fact:"полдвенадцатого — согласная Д"},
+  {q:"пол..второго", type:"mc", o:["дефис","слитно"], a:1, fact:"полвторого — согласная В"},
+  {q:"пол..десятого", type:"mc", o:["дефис","слитно"], a:1, fact:"полдесятого — согласная Д"},
+  {q:"пол..девятого", type:"mc", o:["дефис","слитно"], a:1, fact:"полдевятого — согласная Д"},
 ]},
 
-{sec:2, title:"Морфология · Числительные",
+// ─────────────────────────────────────────────────────────────
+// УРОК 3: Суффиксы -ИЦ-/-ЕЦ-
+// ─────────────────────────────────────────────────────────────
+{title:"Суффиксы -ИЦ-/-ЕЦ-",
 questions:[
-  {stage:"rule", q:"📜 ПРАВИЛО\n\nПорядковые (первый, сотый): РОД + ЧИСЛО + ПАДЕЖ\nКоличественные (один, два, сто): только ПАДЕЖ\n\nИсключение: один/одна, два/две — есть род!", type:"rule"},
+  {stage:"rule", q:"📜 ПРАВИЛО\n\n<strong>-ИЦ-</strong> в сущ. <em>женского рода</em>: красавица\n<strong>-ЕЦ-</strong> в сущ. <em>мужского рода</em>: красавец\n\nВ сущ. <em>среднего рода</em>:\n• ударение ПЕРЕД суффиксом → <strong>-ЕЦ-</strong>: письмецо́\n• ударение НА/ПОСЛЕ суффикса → <strong>-ИЦ-</strong>: здоро́вьице", type:"rule"},
 
-  {stage:"practice", q:"«До сто восьмой горошины» — какие признаки у «восьмой»?",
-   type:"mc", o:["Только падеж","Род + число + падеж","Только род"], a:1,
-   fact:"«Восьмой» — порядковое, как прилагательное: ж.р., ед.ч., Р.п."},
-
-  {stage:"practice", q:"«По сто горошин» — есть ли у «сто» признак рода?",
-   type:"mc", o:["Да, средний род","Да, мужской род","Нет"], a:2,
-   fact:"«Сто» — количественное. Только падеж, нет рода и числа!"},
-
-  {stage:"olymp", q:"«Две горошины» — есть ли у «две» признак рода?",
-   type:"mc", o:["Нет","Да, женский род","Да, средний род"], a:1,
-   fact:"«Два/две» — исключение! У них есть родовые формы. Часто вопрос-ловушка!"},
-]},
-
-{sec:3, title:"Лексика · Многозначность",
-questions:[
-  {stage:"rule", q:"📜 ПРАВИЛО\n\nМногозначность — одно слово, несколько значений.\n\n«Добрый» в пословицах часто означает:\n• сильный (добрый мороз)\n• большой (добрая часть)\n• хороший (добрая весть)", type:"rule"},
-
-  {stage:"practice", q:"«Добрый мороз до костей, а слабый теплом дразнит». Что значит «добрый»?",
-   type:"mc", o:["Отзывчивый","Сильный, крепкий","Большой"], a:1,
-   fact:"Антоним в предложении — «слабый». Значит, добрый = сильный!"},
-
-  {stage:"exception", q:"«Скопить добро — трудно счастье купить». «Добро» означает...",
-   type:"mc", o:["Добрые дела","Имущество, богатство","Доброта"], a:1,
-   fact:"«Скопить добро» = накопить имущество. Устаревшее значение."},
-]},
-
-{sec:4, title:"Фонетика · Звуки и буквы",
-questions:[
-  {stage:"rule", q:"📜 ПРАВИЛО\n\nЗвуков и букв может быть РАЗНОЕ количество!\n\nЯ, Ё, Е, Ю после гласной = 2 звука: яма = [й'][а]ма\nЬ и Ъ не дают звука: лось = [лос']", type:"rule"},
-
-  {stage:"practice", q:"Сколько звуков в слове «яма»?",
-   type:"mc", o:["3","4","5"], a:1,
-   fact:"Яма: Я=[й'][а], м, а → 4 звука, но 3 буквы!"},
-
-  {stage:"exception", q:"В слове «кремень» сколько ТВЁРДЫХ согласных?",
-   type:"mc", o:["0","1","2"], a:1,
-   fact:"[к][р'][э][м'][э][н']. Твёрдый только [к]! Остальные смягчены."},
+  {q:"именьице", type:"mc", o:["Е","И"], a:1, fact:"именьице — ср.р., ударение на суффиксе → И"},
+  {q:"однофамил..ца", type:"mc", o:["Е","И"], a:1, fact:"однофамилица — ж.р. → И"},
+  {q:"любим..ц", type:"mc", o:["Е","И"], a:0, fact:"любимец — м.р. → Е"},
+  {q:"ружь..цо", type:"mc", o:["Е","И"], a:0, fact:"ружьецо — ср.р., ударение на окончании → Е"},
+  {q:"летч..ца", type:"mc", o:["Е","И"], a:1, fact:"лётчица — ж.р. → И"},
+  {q:"ленив..ца", type:"mc", o:["Е","И"], a:1, fact:"ленивица — ж.р. → И"},
+  {q:"умн..ца", type:"mc", o:["Е","И"], a:1, fact:"умница — ж.р. → И"},
+  {q:"здань..це", type:"mc", o:["Е","И"], a:0, fact:"зданьице — ср.р., зда́ньице, ударение ПЕРЕД суффиксом → Е"},
+  {q:"раздоль..це", type:"mc", o:["Е","И"], a:1, fact:"раздольице — ср.р., раздо́льице, ударение НА суффиксе → И"},
+  {q:"помощн..ца", type:"mc", o:["Е","И"], a:1, fact:"помощница — ж.р. → И"},
+  {q:"красав..ц", type:"mc", o:["Е","И"], a:0, fact:"красавец — м.р. → Е"},
+  {q:"красав..ца", type:"mc", o:["Е","И"], a:1, fact:"красавица — ж.р. → И"},
+  {q:"сверстн..ца", type:"mc", o:["Е","И"], a:1, fact:"сверстница — ж.р. → И"},
+  {q:"молод..ца", type:"mc", o:["Е","И"], a:1, fact:"молодица — ж.р. → И"},
+  {q:"завистн..ца", type:"mc", o:["Е","И"], a:1, fact:"завистница — ж.р. → И"},
+  {q:"однофамил..ц", type:"mc", o:["Е","И"], a:0, fact:"однофамилец — м.р. → Е"},
+  {q:"школьн..ца", type:"mc", o:["Е","И"], a:1, fact:"школьница — ж.р. → И"},
+  {q:"любим..ца", type:"mc", o:["Е","И"], a:1, fact:"любимица — ж.р. → И"},
+  {q:"дупл..цо", type:"mc", o:["Е","И"], a:0, fact:"дуплецо — ср.р., дупле́цо, ударение на окончании → Е"},
+  {q:"кормил..ца", type:"mc", o:["Е","И"], a:1, fact:"кормилица — ж.р. → И"},
+  {q:"спутн..ца", type:"mc", o:["Е","И"], a:1, fact:"спутница — ж.р. → И"},
+  {q:"варень..це", type:"mc", o:["Е","И"], a:1, fact:"вареньице — ср.р., варе́ньице, ударение НА суффиксе → И"},
+  {q:"масл..це", type:"mc", o:["Е","И"], a:1, fact:"маслице — ср.р., ма́слице, особый случай → И"},
+  {q:"здоровь..це", type:"mc", o:["Е","И"], a:1, fact:"здоровьице — ср.р., здоро́вьице, ударение НА суффиксе → И"},
+  {q:"кормил..ц", type:"mc", o:["Е","И"], a:0, fact:"кормилец — м.р. → Е"},
+  {q:"избранн..ца", type:"mc", o:["Е","И"], a:1, fact:"избранница — ж.р. → И"},
+  {q:"питом..ца", type:"mc", o:["Е","И"], a:1, fact:"питомица — ж.р. → И"},
+  {q:"питом..ц", type:"mc", o:["Е","И"], a:0, fact:"питомец — м.р. → Е"},
+  {q:"селень..це", type:"mc", o:["Е","И"], a:1, fact:"селеньице — ср.р., селе́ньице, ударение НА суффиксе → И"},
+  {q:"ровесн..ца", type:"mc", o:["Е","И"], a:1, fact:"ровесница — ж.р. → И"},
 ]},
 ];
 
 /* ═════════════════════════════════════════════════════════════
    ЛОГИКА
 ═════════════════════════════════════════════════════════════ */
-let ST = JSON.parse(localStorage.getItem("olym")||'{"pts":0,"done":[],"streak":0,"lastDate":"","sec":0}');
+let ST = JSON.parse(localStorage.getItem("olym")||'{"pts":0,"done":[],"streak":0,"lastDate":""}');
 let curDay=0, curQ=0, correct=0;
 const save = ()=>localStorage.setItem("olym",JSON.stringify(ST));
-const norm = s=>s.toLowerCase().trim().replace(/ё/g,"е").replace(/\s+/g," ");
-
-const secDays = ()=>DAYS.map((d,i)=>({...d,idx:i})).filter(d=>d.sec===ST.sec);
 
 function updHdr(){
   document.getElementById("stars").textContent=ST.pts;
   document.getElementById("streak").textContent=ST.streak;
 }
 
-function renderTabs(){
-  const el=document.getElementById("tabs"); el.innerHTML="";
-  SEC.forEach((s,i)=>{
-    const b=document.createElement("button");
-    b.className="tab"+(i===ST.sec?" active":"");
-    b.dataset.s=i; b.textContent=s.name;
-    b.onclick=()=>{ST.sec=i;save();curDay=0;curQ=0;correct=0;renderTabs();renderDays();renderQ();};
-    el.appendChild(b);
-  });
-}
-
 function renderDays(){
   const el=document.getElementById("days"); el.innerHTML="";
-  secDays().forEach((d,i)=>{
+  DAYS.forEach((d,i)=>{
     const b=document.createElement("button");
-    b.className="day-btn"+(ST.done.includes(d.idx)?" done":"")+(i===curDay?" active":"");
-    b.textContent=(ST.done.includes(d.idx)?"✅":"")+(i+1);
+    b.className="day-btn"+(ST.done.includes(i)?" done":"")+(i===curDay?" active":"");
+    b.textContent=(ST.done.includes(i)?"✅ ":"")+(i+1);
     b.onclick=()=>{curDay=i;curQ=0;correct=0;renderDays();renderQ();};
     el.appendChild(b);
   });
 }
 
 function setProg(){
-  const days=secDays(); const day=days[curDay]; if(!day)return;
+  const day=DAYS[curDay]; if(!day)return;
   document.getElementById("prog").style.width=Math.round((curQ/day.questions.length)*100)+"%";
 }
 
-function award(fb,ok,show,fact,card){
+function award(fb,ok,fact,card){
   if(ok){
     fb.textContent="✓ Верно!"; fb.style.color="var(--ok)";
     ST.pts++; correct++; save(); updHdr();
     card.classList.add("flash-ok"); setTimeout(()=>card.classList.remove("flash-ok"),600);
   } else {
-    fb.textContent="Не беда"; fb.style.color="var(--err)";
+    fb.textContent="Не беда, запомним!"; fb.style.color="var(--err)";
     card.classList.add("flash-err"); setTimeout(()=>card.classList.remove("flash-err"),500);
-    if(show){const h=document.createElement("div");h.className="hint-ans";h.textContent="Ответ: "+show;fb.after(h);}
   }
   if(fact){
-    const f=document.createElement("div");f.className="fun-fact";f.textContent=fact;
-    card.querySelector(".options,input")?.after?.(f) || card.appendChild(f);
+    const f=document.createElement("div");f.className="hint-ans";f.textContent=fact;
+    fb.after(f);
   }
   const m=document.createElement("div");
-  m.className="motivation";m.textContent=getQuote();
+  m.className="motivation";m.textContent=getQuote(ok);
   card.appendChild(m);
 }
 
@@ -464,19 +425,17 @@ function addNext(card){
 
 function renderQ(){
   setProg();
-  const days=secDays(); const day=days[curDay]; if(!day)return;
+  const day=DAYS[curDay]; if(!day)return;
   if(curQ>=day.questions.length){renderResult();return;}
   const item=day.questions[curQ];
-  const sec=SEC[day.sec];
   const card=document.getElementById("card");
 
   if(item.stage==="rule"){
     card.innerHTML=`
-      <div class="mascot">${sec.emoji}</div>
+      <div class="mascot">📖</div>
       <div class="q-meta">${day.title} · вопрос ${curQ+1}/${day.questions.length}</div>
-      <div class="stage-badge">Правило</div>
       <div class="scroll-box">
-        <div class="scroll-title">Запомни</div>
+        <div class="scroll-title">Правило</div>
         <div class="scroll-body">${item.q}</div>
       </div>`;
     const b=document.createElement("button");b.className="rule-btn";
@@ -486,60 +445,28 @@ function renderQ(){
     return;
   }
 
-  let html=`<div class="mascot">${sec.emoji}</div>
+  let html=`<div class="mascot">✍️</div>
     <div class="q-meta">${day.title} · ${curQ+1}/${day.questions.length}</div>
-    <div class="stage-badge">${item.stage==="practice"?"Практика":item.stage==="exception"?"Исключение":"Олимпиада"}</div>`;
-  if(item.ctx) html+=`<div class="ctx">${item.ctx}</div>`;
-  html+=`<div class="question">${item.q}</div>`;
+    <div class="question">${item.q}</div>`;
 
-  if(item.type==="input"){
-    html+=`<input class="txt-input" id="ti" placeholder="Ответ…" autocomplete="off">
-      <button class="check-btn" id="ck">Проверить</button><div class="feedback" id="fb"></div>`;
-    card.innerHTML=html;
-    document.getElementById("ck").onclick=()=>{
-      const v=norm(document.getElementById("ti").value); if(!v)return;
-      const ok=item.a.some(x=>norm(x)===v);
-      document.getElementById("ti").disabled=true;document.getElementById("ck").remove();
-      award(document.getElementById("fb"),ok,item.show,item.fact||null,card);
-      addNext(card);
-    };
-  } else if(item.type==="multi"){
-    html+=`<div class="options">${item.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")}</div>
-      <button class="check-btn" id="ck">Проверить</button><div class="feedback" id="fb"></div>`;
-    card.innerHTML=html;
-    const sel=new Set();
-    card.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
-      const i=+b.dataset.i;sel.has(i)?(sel.delete(i),b.classList.remove("sel")):(sel.add(i),b.classList.add("sel"));
-    });
-    document.getElementById("ck").onclick=()=>{
-      const right=new Set(item.a);
-      const ok=sel.size===right.size&&[...sel].every(x=>right.has(x));
-      card.querySelectorAll(".opt").forEach(b=>{b.onclick=null;const i=+b.dataset.i;
-        if(right.has(i))b.classList.add("correct"); else if(sel.has(i))b.classList.add("wrong");});
-      document.getElementById("ck").remove();
-      award(document.getElementById("fb"),ok,null,item.fact||null,card);
-      addNext(card);
-    };
-  } else {
-    html+=`<div class="options">${item.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")}</div>
-      <div class="feedback" id="fb"></div>`;
-    card.innerHTML=html;
-    card.querySelectorAll(".opt").forEach(btn=>btn.onclick=()=>{
-      const i=+btn.dataset.i;card.querySelectorAll(".opt").forEach(b=>b.onclick=null);
-      const ok=i===item.a;
-      if(ok)btn.classList.add("correct");
-      else{btn.classList.add("wrong");card.querySelectorAll(".opt")[item.a].classList.add("correct");}
-      award(document.getElementById("fb"),ok,null,item.fact||null,card);
-      addNext(card);
-    });
-  }
+  html+=`<div class="options">${item.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")}</div>
+    <div class="feedback" id="fb"></div>`;
+  card.innerHTML=html;
+  card.querySelectorAll(".opt").forEach(btn=>btn.onclick=()=>{
+    const i=+btn.dataset.i;card.querySelectorAll(".opt").forEach(b=>b.onclick=null);
+    const ok=i===item.a;
+    if(ok)btn.classList.add("correct");
+    else{btn.classList.add("wrong");card.querySelectorAll(".opt")[item.a].classList.add("correct");}
+    award(document.getElementById("fb"),ok,item.fact||null,card);
+    addNext(card);
+  });
 }
 
 function renderResult(){
-  const days=secDays(); const day=days[curDay];
+  const day=DAYS[curDay];
   const total=day.questions.filter(q=>q.stage!=="rule").length;
-  if(!ST.done.includes(day.idx)){
-    ST.done.push(day.idx);
+  if(!ST.done.includes(curDay)){
+    ST.done.push(curDay);
     const today=new Date().toDateString();
     if(ST.lastDate!==today){
       const yest=new Date(Date.now()-864e5).toDateString();
@@ -560,7 +487,7 @@ function renderResult(){
     <button class="next-btn" onclick="location.reload()">← Назад</button>`;
 }
 
-updHdr();renderTabs();renderDays();renderQ();
+updHdr();renderDays();renderQ();
 </script>
 </body>
 </html>
